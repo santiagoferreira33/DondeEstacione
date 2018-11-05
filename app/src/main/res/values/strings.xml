@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Donde Estacione</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="marcador_latlng">(%1$.2f, %2$.2f)</string>
+</resources>
