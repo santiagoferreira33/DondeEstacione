@@ -22,4 +22,19 @@
         android:text="Tomar Foto"
         android:textAllCaps="false"/>
 
+    <EditText
+        android:id="@+id/et_nota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="nota"/>
+
+    <Button
+        android:id="@+id/btn_guardarEstacionamiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar Estacionamiento"
+        android:textAllCaps="false"/>
+
 </LinearLayout>
