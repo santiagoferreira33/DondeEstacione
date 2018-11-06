@@ -103,7 +103,6 @@ public class MapsActivity extends AppCompatActivity/*FragmentActivity*/ implemen
 
             }
         }
-
     }
 
 

@@ -14,7 +14,7 @@
         <com.google.android.gms.maps.MapView
             android:id="@+id/mv_Estacionado"
             android:layout_width="match_parent"
-            android:layout_height="282dp" />
+            android:layout_height="265dp" />
 
         <TextView
             android:id="@+id/tv_direccion_Titulo"
@@ -48,10 +48,15 @@
             android:id="@+id/tv_foto_Titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nota: "
+            android:text="Foto"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="14sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_estacionado"
+            android:layout_width="match_parent"
+            android:layout_height="147dp" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

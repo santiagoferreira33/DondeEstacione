@@ -2,12 +2,17 @@ package com.example.santi_pc.dondeestacione;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +36,9 @@ public class Estacionado extends AppCompatActivity implements OnMapReadyCallback
     public double lng = 0.0;
     public String direccion = "";
     public String nota;
+    Uri selectedImageUri;
+    ImageView iv_estacionado;
+    Bitmap bmp;
 
     @Override
     protected void onResume() {
@@ -61,6 +69,7 @@ public class Estacionado extends AppCompatActivity implements OnMapReadyCallback
 
         tv_nota= (TextView) findViewById(R.id.tv_nota);
         tv_direccion= (TextView) findViewById(R.id.tv_direccion);
+        iv_estacionado = (ImageView) findViewById(R.id.iv_estacionado);  //////////
 
         Bundle extras = this.getIntent().getExtras();
         if(extras != null){
@@ -68,9 +77,17 @@ public class Estacionado extends AppCompatActivity implements OnMapReadyCallback
             lng = extras.getDouble("lng");
             direccion = extras.getString("direccion");
             tv_nota.setText(extras.getString("nota"));
+            String uriString = extras.getString("uri");
+            if(uriString!= null)
+                selectedImageUri = Uri.parse(uriString);   //////////
+            bmp = StringToBitMap(extras.getString("img"));
+
         }
         tv_direccion.setText(direccion);
-        //tv_direccion.setText(nota);
+        if(selectedImageUri!=null)
+            iv_estacionado.setImageURI(selectedImageUri);
+        if (bmp != null)
+            iv_estacionado.setImageBitmap(bmp);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Flecha para volver atras
     }
@@ -113,5 +130,17 @@ public class Estacionado extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public boolean onMarkerClick(Marker marker) {
         return false;
+    }
+
+    ////Camara
+    public Bitmap StringToBitMap(String image){
+        try{
+            byte [] encodeByte=Base64.decode(image,Base64.DEFAULT);
+            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        }catch(Exception e){
+            e.getMessage();
+            return null;
+        }
     }
 }
